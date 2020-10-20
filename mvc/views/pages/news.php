@@ -7,7 +7,7 @@ echo $data["Number"];
 
 <?php
 while($row = mysqli_fetch_array($data["SV"])){
-    echo $row["hoten"];
+    echo $row["hoten"]."<br/>";
 }
 ?>
 
