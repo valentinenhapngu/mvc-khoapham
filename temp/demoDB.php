@@ -1,60 +1,4 @@
 <?php
-$c = new DB();
-// insert row
-    //  $c->sqlInsertPreparePDO('sinhvien',['hoten','number','sothich'],['insertPDO',123,'ok roi nhe']);
-
-// create DB (name)
-    //$arrVal = $c->sqlCreateDbPDO('zzzCreateDbPDO');
-    //echo $arrVal['dbname'] ;
-
-// ex Create table(with assosArForm) in db
-    $arrColName = array('id','fname','value');
-    $arrType = array("INT(6)","VARCHAR(30)");
-    $arrValue = array("UNSIGNED AUTO_INCREMENT PRIMARY KEY","NOT NULL");
-    $arrAssocKey = array("type", "condition");
-    $value = array(
-        $arrColName[0] => [ $arrAssocKey[0]=>$arrType[0], $arrAssocKey[1]=>$arrValue[0] ],
-        $arrColName[1] => [ $arrAssocKey[0]=>$arrType[1], $arrAssocKey[1]=>$arrValue[1] ],
-        $arrColName[2] => [ $arrAssocKey[0]=>$arrType[1], $arrAssocKey[1]=>$arrValue[1] ]
-    );
-    //print_r($value);
-    //$c->sqlCreateTbPDO('zzzCreateDbPDO','newTB22',$value);
-
-// exx for dell sql
-    $arrCon = array('AND','OR');
-    $arrThuoctinh = array( 'id', 'hoten' );
-    $arrTypeOfCompare = array('>','<','=');
-    $arrValToCompare = array('4','"Thanh"');
-    $arrArCon = array(
-        $arrThuoctinh[0] => [ $arrCon[0] => [ $arrTypeOfCompare[2] , $arrValToCompare[0] ] ],
-        $arrThuoctinh[1] => [ $arrCon[0] => [ $arrTypeOfCompare[2] , $arrValToCompare[1] ] ]
-    );
-   //print_r($arrArCon);
-$c->connectByPDO('mvc_crud_tinypc');
-// update col
-    $arCol = array("hoten","number");
-    $arColVal = array('"xxx"', '111');
-    $arSetVal = array($arCol[0]=>$arColVal[0], $arCol[1]=>$arColVal[1] );
-    $arCon = array('id','sothich');
-    $arConVal = array('2','"A"');
-    $arWheCondition = array( $arCon[0] => $arConVal[0], $arCon[1] => $arConVal[1] );
-
-//$c->sqlUpd_PDO('sinhvien',$arSetVal,$arWheCondition);
-// select 
-$arWhat = array('*');
-$arWhat2 = array('hoten','sothich');
-$arrPropertiy = array('id', 'id');
-$arrRelation = array('>','<=');
-$arrValue = array('6', '10');
-$arrQH = array('AND','AND');
-$arWheCondition = [ [ $arrPropertiy[0], $arrValue[0], $arrRelation[0], $arrQH[0] ] ,
-                [ $arrPropertiy[1], $arrValue[1], $arrRelation[1], $arrQH[1] ] ];
-$slec = $c->sqlSelectIn1TablePDO('sinhvien',$arWhat2,$arWheCondition);
-// Process all rows
-
-var_dump($slec);
-
-$c->closeDPO();
 
 class DB{
 // classDB prooperties
@@ -183,8 +127,7 @@ function sqlInsertPreparePDO($table, $arrColName, $arrValue){
         $stmt->bindParam(':col'.$key,$this->arrColPreparePDO[$key]);
         $this->arrColPreparePDO[$key] = $arrValue[$key];
     }
-    echo "x<br>";
-    var_dump($stmt);
+    //var_dump($stmt);
     $stmt->execute();
     
 }
